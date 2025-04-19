@@ -9,7 +9,7 @@ import (
 	"github.com/iSpot24/pokedex-cli/internal/pokeapi"
 )
 
-func openPokedex(cfg *config) {
+func goCatchemAll(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -38,6 +38,7 @@ type config struct {
 	apiClient       pokeapi.Client
 	nextPageURL     *string
 	previousPageURL *string
+	pokedex         map[string]pokeapi.RespPokemon
 }
 
 type cliCommand struct {
@@ -48,6 +49,11 @@ type cliCommand struct {
 
 func getCommands() map[string]cliCommand {
 	return map[string]cliCommand{
+		"pokedex": {
+			name:        "pokedex",
+			description: "List caught pokemon",
+			callback:    commandPokedex,
+		},
 		"map": {
 			name:        "map",
 			description: "List available locations or navigate to next page",
@@ -59,9 +65,19 @@ func getCommands() map[string]cliCommand {
 			callback:    commandMapb,
 		},
 		"explore": {
-			name:        "explore",
+			name:        "explore <location_name>",
 			description: "Explore a location",
 			callback:    commandExplore,
+		},
+		"catch": {
+			name:        "catch <pokemon_name>",
+			description: "Attempt to catch a Pokemon",
+			callback:    commandCatch,
+		},
+		"inspect": {
+			name:        "inspect <pokemon_name>",
+			description: "Inspect a caught Pokemon",
+			callback:    commandInspect,
 		},
 		"help": {
 			name:        "help",

@@ -46,7 +46,7 @@ func (client *Client) ListLocations(pageURL *string) (RespLocations, error) {
 	return respLocations, nil
 }
 
-func (client *Client) ListLocation(area string) (RespLocation, error) {
+func (client *Client) GetLocation(area string) (RespLocation, error) {
 	url := baseUrl + "/location-area/" + area
 
 	data, found := client.cache.Get(url)
