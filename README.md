@@ -10,6 +10,8 @@ A basic Pokedex following Boot.dev's "Build a Pokedex in Go" Course which covers
   - help: Display available commands and usage
   - exit: Close the program
 
+Data provided by PokeApi(https://pokeapi.co/).
+
 Possible improvements:
   * Update the CLI to support the "up" arrow to cycle through previous commands
   * Simulate battles between pokemon
